@@ -8,6 +8,10 @@ const postingSchema = new Schema({
     ref: 'User',
     required: true
   },
+  name: {
+    type: String,
+    required: true,
+  }
 });
 
 const Posting = mongoose.model('Posting', postingSchema);

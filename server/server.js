@@ -8,13 +8,21 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware
-});
 
-server.applyMiddleware({ app });
+// Apollo version 3.0 bug patch
+async function startApolloServer(typeDefs, resolvers){
+  const server = new ApolloServer({typeDefs, resolvers})
+  const app = express();
+  //This line will fix our bug!
+  await server.start();
+  server.applyMiddleware({app, path: '/graphql'});
+  
+  app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}${server.graphqlPath}`);
+})
+}
+
+startApolloServer(typeDefs, resolvers);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
