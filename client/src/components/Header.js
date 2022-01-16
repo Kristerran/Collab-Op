@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
     MDBNavbar,
     MDBCollapse,
@@ -11,6 +10,7 @@ import {
     MDBContainer,
     MDBIcon
   } from 'mdb-react-ui-kit';
+import { Router } from "react-router-dom";
 
 const Header = () => {
     const [showNavNoToggler, setShowNavNoToggler] = useState(false);
@@ -18,7 +18,7 @@ const Header = () => {
     <header>
     <MDBNavbar expand='lg' light bgColor='white' fixed>
     <MDBContainer fluid>
-    <MDBNavbarBrand href='#'>Navbar</MDBNavbarBrand>
+    <MDBNavbarBrand href='/'>CollabOp</MDBNavbarBrand>
       <MDBNavbarToggler
         aria-controls='navbarExample01'
         aria-expanded='false'
@@ -30,18 +30,18 @@ const Header = () => {
       <MDBCollapse navbar show={showNavNoToggler}>
         <MDBNavbarNav right className='mb-2 mb-lg-0'>
           <MDBNavbarItem active>
-            <MDBNavbarLink aria-current='page' href='#'>
+            <MDBNavbarLink aria-current='page' href='/'>
               Home
             </MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
-            <MDBNavbarLink href='#'>Features</MDBNavbarLink>
+            <MDBNavbarLink href='/feed'>Feed</MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
-            <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
+            <MDBNavbarLink href='/user'>Account</MDBNavbarLink>
           </MDBNavbarItem>
           <MDBNavbarItem>
-            <MDBNavbarLink href='#'>About</MDBNavbarLink>
+            <MDBNavbarLink href='/post'>Make a post</MDBNavbarLink>
           </MDBNavbarItem>
         </MDBNavbarNav>
       </MDBCollapse>
