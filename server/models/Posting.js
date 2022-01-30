@@ -8,10 +8,24 @@ const postingSchema = new Schema({
     ref: 'User',
     required: true
   },
-  name: {
+  title: {
     type: String,
     required: true,
-  }
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  collaborators: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false
+  }],
+  seeking: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Specialty'
+  }]
+
 });
 
 const Posting = mongoose.model('Posting', postingSchema);

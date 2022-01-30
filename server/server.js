@@ -6,23 +6,21 @@ const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
-
-// Apollo version 3.0 bug patch
-async function startApolloServer(typeDefs, resolvers){
-  const server = new ApolloServer({typeDefs, resolvers})
-  const app = express();
-  //This line will fix our bug!
+async function startApollo() {
+  // Set up Apollo server
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: authMiddleware,
+  });
   await server.start();
-  server.applyMiddleware({app, path: '/graphql'});
-  
-  app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}${server.graphqlPath}`);
-})
+  // Integrate Apollo server with Express
+  server.applyMiddleware({ app });
+  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 }
-
-startApolloServer(typeDefs, resolvers);
+startApollo();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -32,15 +30,15 @@ app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+
 
 db.once('open', () => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });

@@ -1,42 +1,122 @@
 import React from "react";
 
 import {
-    MDBCarousel,
-    MDBCarouselInner,
-    MDBCarouselItem,
-    MDBCarouselElement,
-    MDBCarouselCaption,
-  } from 'mdb-react-ui-kit';
-  
+  MDBCol,
+  MDBRow,
+  MDBCard,
+  MDBCardImage,
+  MDBContainer,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBBtn,
+  MDBCarousel,
+  MDBCarouselInner,
+  MDBCarouselItem,
+  MDBCarouselElement,
+  MDBCarouselCaption,
+} from 'mdb-react-ui-kit';
+
 const Home = () => {
   return (
-    <MDBCarousel showIndicators showControls fade>
-      <MDBCarouselInner>
-        <MDBCarouselItem className='active'>
-          <MDBCarouselElement src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).webp' alt='...' />
-          <MDBCarouselCaption>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </MDBCarouselCaption>
-        </MDBCarouselItem>
+    <MDBContainer fluid className="p-0">
+      
+      <MDBCarousel className="mb-6" showIndicators showControls fade>
+        <MDBCarouselInner>
+          <MDBCarouselItem className='active'>
+            <MDBCarouselElement src='./marvin-meyer-SYTO3xs06fU-unsplash.jpg' alt='...' />
+            <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}></div>
+            <MDBCarouselCaption class='carousel-caption d-block'>
+              <h5>Welcome to CollabOp!</h5>
+              <p>CollabOp is a networking tool for creatives. Let's create something amazing, together!</p>
+            </MDBCarouselCaption>
+          </MDBCarouselItem>
 
-        <MDBCarouselItem>
-          <MDBCarouselElement src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).webp' alt='...' />
-          <MDBCarouselCaption>
-            <h5>Second slide label</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </MDBCarouselCaption>
-        </MDBCarouselItem>
+          <MDBCarouselItem>
+            <MDBCarouselElement src='./chris-murray-iwfHhOZLVMU-unsplash.jpg' alt='...' />
+            <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}></div>
+            <MDBCarouselCaption class='carousel-caption d-block'>
+              <h5>CollabOp is still in development!</h5>
+              <p>Check back often for features and updates!</p>
+            </MDBCarouselCaption>
+          </MDBCarouselItem>
 
-        <MDBCarouselItem>
-          <MDBCarouselElement src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).webp' alt='...' />
-          <MDBCarouselCaption>
-            <h5>Third slide label</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </MDBCarouselCaption>
-        </MDBCarouselItem>
-      </MDBCarouselInner>
-    </MDBCarousel>
+          <MDBCarouselItem>
+            <MDBCarouselElement src='./laura-adai-5H2ketFL1LE-unsplash.jpg' alt='...' />
+            <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}></div>
+            <MDBCarouselCaption class='carousel-caption d-block'>
+              <h5>CollabOp Alpha</h5>
+              <p>Coing soon!</p>
+            </MDBCarouselCaption>
+          </MDBCarouselItem>
+        </MDBCarouselInner>
+      </MDBCarousel>
+
+      <MDBContainer fluid>
+      <MDBRow className='row-cols-1 row-cols-md-2'>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/041.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>
+              This is a longer card with supporting text below as a natural lead-in to additional content.
+              This content is a little bit longer.
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/042.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>This is a short card.</MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/043.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>
+              This is a longer card with supporting text below as a natural lead-in to additional content.
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+      <MDBCol>
+        <MDBCard className='h-100'>
+          <MDBCardImage
+            src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+            alt='...'
+            position='top'
+          />
+          <MDBCardBody>
+            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardText>
+              This is a longer card with supporting text below as a natural lead-in to additional content.
+              This content is a little bit longer.
+            </MDBCardText>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    </MDBRow>
+      </MDBContainer>
+    </MDBContainer>
   );
 };
 

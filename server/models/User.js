@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Posting = require('./Posting');
-
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -25,16 +24,22 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  avatar: {
-    type: String,
-    required: false,
-  },
+  // avatar: {
+  //   type: String,
+  //   required: false,
+  // },
+  // Specialty: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Specialty',
+  //   required: false
+  // },
   password: {
     type: String,
     required: true,
     minlength: 5
   },
-  postings: [Posting.schema]
+  // postings: [Posting.schema],
+  // collaborations: [Posting.schema]
 });
 
 // set up pre-save middleware to create password

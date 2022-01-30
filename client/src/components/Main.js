@@ -24,7 +24,6 @@ const Main = () => {
   const [showNavNoToggler, setShowNavNoToggler] = useState(false);
 
   return (
-    <div className="container">
       <BrowserRouter>
         <header>
           <MDBNavbar expand='lg' light bgColor='white' fixed>
@@ -143,7 +142,6 @@ const Main = () => {
       </div>
     </MDBFooter>
       </BrowserRouter>
-    </div>
   );
 };
 
