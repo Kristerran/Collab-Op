@@ -7,6 +7,7 @@ type User {
     firstName: String
     lastName: String
     email: String
+    username: String
     specialty: [Specialty]
     postings: [Posting]
   }
@@ -37,6 +38,11 @@ type User {
 
   type Query {
     user: User
+    users: [User]
+    posting: Posting
+    postings: [Posting]
+    specialty: Specialty
+    specialties: [Specialty]
   }
 
   type Mutation {

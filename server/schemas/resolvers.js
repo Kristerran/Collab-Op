@@ -4,13 +4,15 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    users: async () => {
+      return await User.find({});
+    },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'orders.products',
           populate: 'category'
         });
-
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
         return user;
@@ -18,6 +20,18 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+    posting: async () => {
+      const posting = await Posting.find({})
+
+      return posting;
+    },
+    specialties: async () => {
+      const specialty = await Specialty.find({})
+
+      return specialty;
+    },
+
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -33,6 +47,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+  
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
