@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import {
   MDBNavbar,
   MDBCollapse,
   MDBNavbarBrand,
@@ -18,6 +25,26 @@ import Home from '../pages/Home'
 import Feed from '../pages/Feed'
 import Page from '../pages/Page'
 import Search from '../pages/Search'
+import Login from '../pages/Login'
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 const Main = () => {
 
@@ -64,6 +91,11 @@ const Main = () => {
                     <Link to="/search">Search</Link>
                     </MDBNavbarLink>
                   </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <MDBNavbarLink>
+                    <Link to="/login">Login</Link>
+                    </MDBNavbarLink>
+                  </MDBNavbarItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBContainer>
@@ -75,6 +107,7 @@ const Main = () => {
           <Route exact path="/feed" element={<Feed />} />
           <Route exact path="/user" element={<Page />} />
           <Route exact path="/search" element={<Search />} />
+          <Route exact path="/login" element={<Login />} />
         </Routes>
         <MDBFooter className='bg-light text-center text-white'>
       <div className='container p-4 pb-0'>
