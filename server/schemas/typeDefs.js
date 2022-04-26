@@ -4,10 +4,7 @@ const typeDefs = gql`
 
 type User {
     _id: ID
-    firstName: String
-    lastName: String
     email: String
-    username: String
     specialty: [Specialty]
     postings: [Posting]
   }
@@ -18,6 +15,7 @@ type User {
     users: [User]
     postings: [Posting]
   }
+  
   type Posting {
     _id: ID
     title: String
@@ -37,8 +35,9 @@ type User {
   }
 
   type Query {
-    user: User
-    users: [User]
+    users: [User]!
+    user(userId: ID!): User
+    me: User
     posting: Posting
     postings: [Posting]
     specialty: Specialty
@@ -46,8 +45,8 @@ type User {
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, username: String! email: String!, password: String! specialty: Int!): Auth
-    updateUser(firstName: String, lastName: String, username: String email: String, password: String specialty: Int): User
+    addUser(email: String!, password: String!): Auth
+    updateUser(email: String, password: String): User
     login(email: String!, password: String!): Auth
   }
 `;

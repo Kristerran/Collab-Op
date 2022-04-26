@@ -16,17 +16,20 @@ import {
   MDBCarouselElement,
   MDBCarouselCaption,
 } from 'mdb-react-ui-kit';
+import Button from '@mui/material/Button';
 
 const Home = () => {
   return (
     <MDBContainer fluid className="p-0">
-      
+      <Button>
+        I am a button
+      </Button>
       <MDBCarousel className="mb-6" showIndicators showControls fade>
         <MDBCarouselInner>
           <MDBCarouselItem className='active'>
             <MDBCarouselElement src='./marvin-meyer-SYTO3xs06fU-unsplash.jpg' alt='...' />
             <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}></div>
-            <MDBCarouselCaption class='carousel-caption d-block'>
+            <MDBCarouselCaption className='carousel-caption d-block'>
               <h5>Welcome to CollabOp!</h5>
               <p>CollabOp is a networking tool for creatives. Let's create something amazing, together!</p>
             </MDBCarouselCaption>
@@ -35,7 +38,7 @@ const Home = () => {
           <MDBCarouselItem>
             <MDBCarouselElement src='./chris-murray-iwfHhOZLVMU-unsplash.jpg' alt='...' />
             <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}></div>
-            <MDBCarouselCaption class='carousel-caption d-block'>
+            <MDBCarouselCaption className='carousel-caption d-block'>
               <h5>CollabOp is still in development!</h5>
               <p>Check back often for features and updates!</p>
             </MDBCarouselCaption>
@@ -44,7 +47,7 @@ const Home = () => {
           <MDBCarouselItem>
             <MDBCarouselElement src='./laura-adai-5H2ketFL1LE-unsplash.jpg' alt='...' />
             <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}></div>
-            <MDBCarouselCaption class='carousel-caption d-block'>
+            <MDBCarouselCaption className='carousel-caption d-block'>
               <h5>CollabOp Alpha</h5>
               <p>Coing soon!</p>
             </MDBCarouselCaption>

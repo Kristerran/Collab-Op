@@ -7,20 +7,15 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
-        });
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in');
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
     },
-
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     posting: async () => {
       const posting = await Posting.find({})
 
@@ -31,7 +26,6 @@ const resolvers = {
 
       return specialty;
     },
-
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -40,12 +34,19 @@ const resolvers = {
 
       return { token, user };
     },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-      }
 
-      throw new AuthenticationError('Not logged in');
+    updateUser: async (parent, { email, password }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            email: email,
+            password: password,
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   
     login: async (parent, { email, password }) => {
@@ -68,3 +69,4 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
